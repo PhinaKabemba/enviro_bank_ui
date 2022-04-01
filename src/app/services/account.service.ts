@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AccountService {
 
-  private baseUrl = 'http://localhost:8080';
+  private baseUrl = 'http://localhost:8080/accounts';
 
   constructor(private httpClient: HttpClient) {}
 
