@@ -1,14 +1,49 @@
-<!-- 
-<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-    <option selected>Select available bank accounts</option>
-    <option *ngFor="let account of accounts" value="account.id">{{account.accountNum}}</option>
-</select> -->
-
 <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    <button class="btn btn-secondary dropdown-toggle" 
+    type="button" id="dropdownMenuButton1" 
+    data-bs-toggle="dropdown" 
+    aria-expanded="false">
       Available bank accounts
     </button>
+    
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-      <li *ngFor="let account of accounts" value="account.id"><a class="dropdown-item" href="#">{{account.accountNum}}</a></li>
+      <li *ngFor="let account of accounts" (click) = "handleBankAccount(account)">
+        <a class="dropdown-item" href="#">{{account.accountNum}}</a>
+      </li>
     </ul>
+</div>
+
+<div *ngIf="show">
+    <p>Account balance : {{selectedAccount.balance}}
+        <br/>
+        Account number : {{selectedAccount.accountNum}} 
+    </p>
+</div>
+<p></p>
+<div class="row g-3" *ngIf="show">
+    <div class="col-auto">
+      <label for="depositText" class="visually-hidden">Amount to deposit</label>
+      <input type="text" readonly class="form-control-plaintext" id="depositText" value="Amount to deposit">
+    </div>
+    <div class="col-auto">
+      <label for="depositAmount" class="visually-hidden">1000</label>
+      <input [(ngModel)]="depositAmount" type="number" class="form-control" id="depositAmount" placeholder="1000">
+    </div>
+    <div class="col-auto">
+      <button type="button" class="btn btn-success mb-3" (click) = "deposit()">Deposit</button>
+    </div>
+</div>
+
+<div class="row g-3" *ngIf="show">
+    <div class="col-auto">
+      <label for="withdrawText" class="visually-hidden">Amount to withdraw</label>
+      <input type="text" readonly class="form-control-plaintext" id="withdrawText" value="Amount to withdraw">
+    </div>
+    <div class="col-auto">
+      <label for="withdrawAmount" class="visually-hidden">1000</label>
+      <input [(ngModel)]="withdrawalAmount" type="number" class="form-control" id="withdrawAmount" placeholder="1000">
+    </div>
+    <div class="col-auto">
+      <button type="button" class="btn btn-danger mb-3" (click) = "withdraw()">Withdraw</button>
+    </div>
 </div>

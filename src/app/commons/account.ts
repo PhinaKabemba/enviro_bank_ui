@@ -1,7 +1,8 @@
 export class Account {
     id : number | undefined;
-    accountNum: String | undefined;
+    accountNum: string | undefined;
     balance: bigint | undefined;
-    customerNum: String | undefined;
+    customerNum: string | undefined;
     overdraft: bigint | undefined;
+    type: string | undefined;
 }

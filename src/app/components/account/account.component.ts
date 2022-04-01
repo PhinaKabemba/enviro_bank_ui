@@ -10,6 +10,10 @@ import { AccountService } from 'src/app/services/account.service';
 export class AccountComponent implements OnInit {
 
   accounts : Account[]  = new Array();
+  selectedAccount : Account = new Account();
+  show : boolean = false;
+  depositAmount : number = 0;
+  withdrawalAmount : number = 0;
 
   constructor(private accountService : AccountService) { }
 
@@ -21,6 +25,25 @@ export class AccountComponent implements OnInit {
     }, error => {
       console.log(error);
     });
+  }
+
+  handleBankAccount(account : Account) {
+    this.selectedAccount = account;
+    this.show = true;
+  }
+
+  deposit() {
+    
+    this.accountService.deposit(this.selectedAccount?.accountNum, this.depositAmount)
+    .subscribe(data => {
+      this.selectedAccount = data;
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  withdraw() {
+    console.log(this.withdrawalAmount);
   }
 
 }

@@ -10,10 +10,14 @@ export class AccountService {
 
   private baseUrl = 'http://localhost:8080';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   getAccounts(): Observable<Account[]> {
     return this.httpClient.get<Account[]>(this.baseUrl + '/accounts');
+  }
+
+  deposit(accountNumber: string | undefined, amount: number): Observable<Account> {
+    return this.httpClient.post<Account>(this.baseUrl + '/accounts/deposit?accountNumber=' + accountNumber + '&amount=' + amount, null);
   }
 
 
