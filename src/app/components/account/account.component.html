@@ -1,0 +1,14 @@
+<!-- 
+<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+    <option selected>Select available bank accounts</option>
+    <option *ngFor="let account of accounts" value="account.id">{{account.accountNum}}</option>
+</select> -->
+
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      Available bank accounts
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li *ngFor="let account of accounts" value="account.id"><a class="dropdown-item" href="#">{{account.accountNum}}</a></li>
+    </ul>
+</div>
