@@ -24,6 +24,12 @@
 
 <p></p>
 
+<div *ngIf="showAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Successfull withdrawal</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<p></p>
+
 <div class="row g-3" *ngIf="show">
     <div class="col-auto">
       <label for="withdrawText" class="visually-hidden">Amount to withdraw</label>

@@ -13,6 +13,7 @@ export class AccountComponent implements OnInit {
   selectedAccount : Account = new Account();
   show : boolean = false;
   withdrawalAmount : number = 0;
+  showAlert: boolean = false;
 
   constructor(private accountService : AccountService) { }
 
@@ -43,10 +44,10 @@ export class AccountComponent implements OnInit {
   withdraw() {
     this.accountService.withdraw(this.selectedAccount?.accountNum, this.withdrawalAmount)
     .subscribe(data => {
-      console.log(data);
       this.selectedAccount = data;
       this.refresh();
       this.withdrawalAmount = 0;
+      this.showAlert = true;
     }, error => {
       console.log(error);
     });
