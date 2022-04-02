@@ -12,7 +12,6 @@ export class AccountComponent implements OnInit {
   accounts : Account[]  = new Array();
   selectedAccount : Account = new Account();
   show : boolean = false;
-  depositAmount : number = 0;
   withdrawalAmount : number = 0;
 
   constructor(private accountService : AccountService) { }
@@ -32,18 +31,25 @@ export class AccountComponent implements OnInit {
     this.show = true;
   }
 
-  deposit() {
-    
-    this.accountService.deposit(this.selectedAccount?.accountNum, this.depositAmount)
+  refresh() {
+    this.accountService.getAccounts()
     .subscribe(data => {
-      this.selectedAccount = data;
+      this.accounts = data;
     }, error => {
       console.log(error);
-    })
+    });
   }
 
   withdraw() {
-    console.log(this.withdrawalAmount);
+    this.accountService.withdraw(this.selectedAccount?.accountNum, this.withdrawalAmount)
+    .subscribe(data => {
+      console.log(data);
+      this.selectedAccount = data;
+      this.refresh();
+      this.withdrawalAmount = 0;
+    }, error => {
+      console.log(error);
+    });
   }
 
 }

@@ -16,9 +16,8 @@ export class AccountService {
     return this.httpClient.get<Account[]>(this.baseUrl + '/accounts');
   }
 
-  deposit(accountNumber: string | undefined, amount: number): Observable<Account> {
-    return this.httpClient.post<Account>(this.baseUrl + '/accounts/deposit?accountNumber=' + accountNumber + '&amount=' + amount, null);
+  withdraw(accountNumber: string | undefined, amount: number): Observable<Account> {
+    return this.httpClient.post<Account>(this.baseUrl + '/accounts/withdraw?accountNumber=' + accountNumber + '&amount=' + amount, null);
   }
-
 
 }
